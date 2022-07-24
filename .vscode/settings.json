@@ -1,0 +1,5 @@
+// Cấu hình format code với prettier
+{
+    "editor.formatOnSave": true, // tự động format khi save
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
