@@ -1,0 +1,10 @@
+.wrapper {
+    height: 60px;
+    border-bottom: solid 1px #d7d7d7;
+    .inner {
+        height: 100%;
+        width: var(--default-layout-width);
+        margin: 0 auto;
+        background-color: #d7d7d7;
+    }
+}
