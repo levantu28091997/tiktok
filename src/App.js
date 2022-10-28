@@ -1,30 +1,38 @@
-import { Routes, Route, Link } from 'react-router-dom'
-import Homepage from './pages/Home'
-import Newspage from './pages/News'
-import Contactpage from './pages/Contact'
+import { Fragment } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { publicRoutes } from '~/routes'
+import { DefaultLayout } from '~/components/Layouts'
 
 function App() {
     return (
-        <div className="App">
-            <nav>
-                <ul>
-                    <li>
-                        <Link to="/">Home</Link>
-                    </li>
-                    <li>
-                        <Link to="/news">News</Link>
-                    </li>
-                    <li>
-                        <Link to="/contact">Contact</Link>
-                    </li>
-                </ul>
-            </nav>
-            <Routes>
-                <Route path="/" element={<Homepage />} />
-                <Route path="/news" element={<Newspage />} />
-                <Route path="/contact" element={<Contactpage />} />
-            </Routes>
-        </div>
+        <Router>
+            <div className="App">
+                <Routes>
+                    {publicRoutes.map((item, index) => {
+                        const Page = item.element
+                        let Layout = DefaultLayout
+
+                        if (item.layout) {
+                            Layout = item.layout
+                        } else if (item.layout === null) {
+                            Layout = Fragment
+                        }
+
+                        return (
+                            <Route
+                                key={index}
+                                path={item.path}
+                                element={
+                                    <Layout>
+                                        <Page />
+                                    </Layout>
+                                }
+                            ></Route>
+                        )
+                    })}
+                </Routes>
+            </div>
+        </Router>
     )
 }
 
