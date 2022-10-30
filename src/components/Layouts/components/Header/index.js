@@ -8,6 +8,7 @@ import { Wrapper as PopperWrapper } from '~/components/Layouts/Popper'
 import styles from './Header.module.scss'
 import images from '~/assets/images'
 import AccountItem from '~/components/Layouts/components/AccountItem'
+import Button from '~/components/Button'
 
 const cx = classNames.bind(styles)
 
@@ -48,7 +49,12 @@ function Header() {
                         </button>
                     </div>
                 </Tippy>
-                <div className={cx('action')}></div>
+                <div className={cx('action')}>
+                    <Button text>Upload</Button>
+                    <Button primary className={cx('custom-btn')}>
+                        Log in
+                    </Button>
+                </div>
             </div>
         </header>
     )
