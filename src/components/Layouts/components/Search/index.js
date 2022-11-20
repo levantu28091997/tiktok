@@ -4,6 +4,7 @@ import { faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-s
 import HeadlessTippy from '@tippyjs/react/headless'
 import { Wrapper as PopperWrapper } from '~/components/Layouts/Popper'
 import classNames from 'classnames/bind'
+import * as searchServices from '~/apiServices/searchServices'
 
 import { Debounce } from '~/hooks'
 import styles from './Search.module.scss'
@@ -24,16 +25,17 @@ function Search() {
             setSearchResult([])
             return
         }
-        setLoading(true)
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
-            .then((res) => res.json())
-            .then((res) => {
-                setSearchResult(res.data)
-                setLoading(false)
-            })
-            .catch(() => {
-                setLoading(false)
-            })
+
+        const fetchApi = async () => {
+            setLoading(true)
+
+            const result = await searchServices.search(debounced)
+
+            setSearchResult(result)
+            setLoading(false)
+        }
+
+        fetchApi()
     }, [debounced])
 
     const handleClear = () => {
