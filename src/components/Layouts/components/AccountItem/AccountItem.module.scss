@@ -2,6 +2,11 @@
     display: flex;
     align-items: center;
     padding: 5px 12px;
+    text-decoration: unset;
+
+    &:hover {
+        background-color: #e7e7e7;
+    }
 }
 
 .avatar {
