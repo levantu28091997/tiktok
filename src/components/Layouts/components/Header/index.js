@@ -14,12 +14,14 @@ import 'tippy.js/dist/tippy.css'
 import classNames from 'classnames/bind'
 import styles from './Header.module.scss'
 import images from '~/assets/images'
+import { Link } from 'react-router-dom'
 
 import Button from '~/components/Button'
 import Menu from '~/components/Layouts/Popper/Menu'
 import { UploadIcon } from '~/components/Icons'
 import Image from '~/components/Image'
 import Search from '../Search'
+import routes from '~/config/routes'
 
 const cx = classNames.bind(styles)
 const MENU_ITEMS = [
@@ -85,8 +87,9 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <img className={cx('logo')} src={images.logo} alt="Tiktok" />
-                {/* Search */}
+                <Link to={routes.home}>
+                    <img className={cx('logo')} src={images.logo} alt="Tiktok" />
+                </Link>
                 <Search />
 
                 <div className={cx('action')}>
